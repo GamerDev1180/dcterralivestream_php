@@ -6,7 +6,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Layout('layouts::admin')] #[Title('Site Settings')] class extends Component {
+new #[Layout('layouts::admin')] #[Title('Site-instellingen')] class extends Component {
     /**
      * Feature flags: turn public pages and nav links on or off.
      *

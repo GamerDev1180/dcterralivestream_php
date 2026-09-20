@@ -8,7 +8,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Layout('layouts::admin')] #[Title('Email Domains')] class extends Component {
+new #[Layout('layouts::admin')] #[Title('E-maildomeinen')] class extends Component {
     public string $newDomain = '';
 
     public string $success = '';

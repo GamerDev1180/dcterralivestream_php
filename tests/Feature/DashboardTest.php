@@ -3,6 +3,7 @@
 use App\Models\User;
 
 dataset('admin pages', [
+    'admin.overview',
     'admin.registrations',
     'admin.team-signups',
     'admin.schedule',
@@ -27,3 +28,24 @@ test('admins can visit the admin pages', function (string $routeName) {
     $response = $this->get(route($routeName));
     $response->assertOk();
 })->with('admin pages');
+
+test('the admin navigation only shows the pages of the group you are in', function () {
+    $this->actingAs(User::factory()->create());
+
+    $this->get(route('admin.sponsors'))
+        ->assertOk()
+        ->assertSeeInOrder(['Aanmeldingen', 'Evenement', 'Website', 'Beheer'])
+        ->assertSeeText('Site-instellingen')
+        ->assertSeeText('Sponsoren')
+        ->assertDontSeeText('Registraties')
+        ->assertDontSeeText('Programma');
+});
+
+test('a group with a single page does not render a second navigation row', function () {
+    $this->actingAs(User::factory()->create());
+
+    $this->get(route('admin.settings'))
+        ->assertOk()
+        ->assertSeeText('Beheer')
+        ->assertDontSee('aria-label="Beheer"', escape: false);
+});

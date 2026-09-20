@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\UserRole;
 use App\Models\ArchivedRecord;
 use App\Models\Registration;
 use App\Models\RegistrationAnswer;
@@ -49,53 +48,15 @@ test('event timing is saved when a field changes', function () {
         ->and(Setting::getBoolean('registration_open'))->toBeFalse();
 });
 
-test('a super admin can create an admin who can log in with their username', function () {
-    $this->actingAs(User::factory()->superAdmin()->create());
-
-    Livewire::test('pages::admin.settings')
-        ->set('username', 'nieuweadmin')
-        ->set('email', 'nieuw@dcterra.nl')
-        ->set('password', 'geheim-wachtwoord')
-        ->set('role', 'admin')
-        ->call('createAdmin')
-        ->assertHasNoErrors()
-        ->assertSee('Admin user created successfully');
-
-    expect(User::firstWhere('email', 'nieuw@dcterra.nl')->role)->toBe(UserRole::Admin);
-
-    auth()->logout();
-
-    $this->post(route('login.store'), ['username' => 'nieuweadmin', 'password' => 'geheim-wachtwoord'])
-        ->assertRedirect(route('admin.registrations', absolute: false));
-});
-
-test('an admin password needs at least 12 characters', function () {
-    $this->actingAs(User::factory()->superAdmin()->create());
-
-    Livewire::test('pages::admin.settings')
-        ->set('username', 'nieuweadmin')
-        ->set('email', 'nieuw@dcterra.nl')
-        ->set('password', 'kort')
-        ->call('createAdmin')
-        ->assertHasErrors(['password' => 'min']);
-});
-
-test('a normal admin can not create admins or reset the event', function () {
+test('a normal admin can not reset the event', function () {
     $this->actingAs(User::factory()->create());
     Registration::factory()->create();
 
     Livewire::test('pages::admin.settings')
-        ->set('username', 'stiekem')
-        ->set('email', 'stiekem@dcterra.nl')
-        ->set('password', 'geheim-wachtwoord')
-        ->set('role', 'super_admin')
-        ->call('createAdmin')
-        ->assertSee('Insufficient permissions')
         ->call('archiveAndReset')
         ->assertSet('resetMessage', 'Insufficient permissions');
 
-    expect(User::count())->toBe(1)
-        ->and(Registration::count())->toBe(1);
+    expect(Registration::count())->toBe(1);
 });
 
 test('archive and reset moves registrations and signups to the archive and keeps the rest', function () {

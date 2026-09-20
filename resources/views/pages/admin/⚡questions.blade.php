@@ -11,7 +11,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Layout('layouts::admin')] #[Title('Questions')] class extends Component {
+new #[Layout('layouts::admin')] #[Title('Vragen')] class extends Component {
     /** The id of the question being edited, or null when adding a new one. */
     public ?int $editingId = null;
 

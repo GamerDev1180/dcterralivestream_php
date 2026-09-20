@@ -30,6 +30,7 @@ Route::livewire('team', 'pages::team')->name('team');
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::livewire('/', 'pages::admin.registrations')->name('registrations');
+    Route::livewire('overzicht', 'pages::admin.overview')->name('overview');
     Route::get('registrations/export', ExportRegistrationsController::class)->name('registrations.export');
     Route::livewire('team-signups', 'pages::admin.team-signups')->name('team-signups');
     Route::livewire('schedule', 'pages::admin.schedule')->name('schedule');

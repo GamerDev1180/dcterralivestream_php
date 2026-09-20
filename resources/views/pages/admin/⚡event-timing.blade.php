@@ -6,7 +6,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Layout('layouts::admin')] #[Title('Event Timing')] class extends Component {
+new #[Layout('layouts::admin')] #[Title('Timing')] class extends Component {
     public bool $registration_open = true;
     public string $stream_start_time = '';
     public string $registration_end_time = '';

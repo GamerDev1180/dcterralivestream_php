@@ -37,6 +37,20 @@
     --input: oklch(0.9 0 0);
     --ring: oklch(0.53 0.23 25);
     --chart-3: oklch(0.4 0.2 25);
+
+    /*
+    | Chart colours. Validated for colour-blind separation and contrast against
+    | the card surface; the dark block below is stepped for the dark surface,
+    | not an automatic flip. Status colours are reserved for status charts and
+    | always ship with a visible label next to them.
+    */
+    --viz-1: #2a78d6;
+    --viz-2: #eb6834;
+    --viz-3: #1baf7a;
+    --viz-4: #4a3aa7;
+    --viz-good: #0ca30c;
+    --viz-warning: #fab219;
+    --viz-critical: #d03b3b;
 }
 
 .dark {
@@ -57,6 +71,14 @@
     --input: oklch(0.22 0 0);
     --ring: oklch(0.65 0.25 25);
     --chart-3: oklch(0.55 0.22 40);
+
+    --viz-1: #3987e5;
+    --viz-2: #d95926;
+    --viz-3: #199e70;
+    --viz-4: #9085e9;
+    --viz-good: #0ca30c;
+    --viz-warning: #fab219;
+    --viz-critical: #d03b3b;
 }
 
 @theme inline {
@@ -80,6 +102,14 @@
     --color-input: var(--input);
     --color-ring: var(--ring);
     --color-chart-3: var(--chart-3);
+
+    --color-viz-1: var(--viz-1);
+    --color-viz-2: var(--viz-2);
+    --color-viz-3: var(--viz-3);
+    --color-viz-4: var(--viz-4);
+    --color-viz-good: var(--viz-good);
+    --color-viz-warning: var(--viz-warning);
+    --color-viz-critical: var(--viz-critical);
 
     /* Flux components (buttons, switches, links) use the primary red as accent color */
     --color-accent: var(--primary);

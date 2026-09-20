@@ -10,7 +10,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Layout('layouts::admin')] #[Title('Team Aanmeldingen')] class extends Component {
+new #[Layout('layouts::admin')] #[Title('Team')] class extends Component {
     public string $search = '';
     public string $statusFilter = 'all';
     public string $typeFilter = 'all';
